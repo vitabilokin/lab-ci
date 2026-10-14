@@ -48,3 +48,9 @@ class Cart:
         if rate <= 0:
             raise ValueError("rate must be positive")
         return round(self.total() / rate, 2)
+
+    def most_expensive(self) -> Item | None:
+        """Найдорожчий товар за ціною одиниці; None для порожнього кошика."""
+        if not self._items:
+            return None
+        return max(self._items.values(), key=lambda item: item.price)
